@@ -21,14 +21,22 @@ public class BroadcastNewSms extends AppCompatActivity {
 
     //String prefsKeyTimeBetweenNotifications = getString(R.string.reciveremailid);
 
-
-
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
       //   String URL = Resources.getSystem().getString(R.string.reciveremailid);
         int PERMISSION_ALL = 1;
-        String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_SMS,};
+        String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_SMS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,};
         String[] Write = {Manifest.permission.WRITE_EXTERNAL_STORAGE, };
 
         if(!hasPermissions(this, PERMISSIONS)){
@@ -37,6 +45,7 @@ public class BroadcastNewSms extends AppCompatActivity {
         if(hasPermissions(this, Write)) {
 
         startService(new Intent(this, BackgroundService.class));
+            startService(new Intent(this, GetLocation.class));
 
         }
 
@@ -47,17 +56,5 @@ public class BroadcastNewSms extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-    }
-
-
-    public static boolean hasPermissions(Context context, String... permissions) {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
-            for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }

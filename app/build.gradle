@@ -26,5 +26,7 @@ dependencies {
    compile files('libs/additionnal.jar')
     compile files('libs/activation.jar')
     compile files ('libs/mail.jar')
+    compile 'com.google.android.gms:play-services:9.6.1'
+
 
 }

