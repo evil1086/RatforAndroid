@@ -10,7 +10,7 @@ import java.util.Timer;
  * Created by ajay on 3/7/2016.
  */
 public class BackgroundService extends Service {
-
+        //heloo
     // constant
     public static final long NOTIFY_INTERVAL = 150 * 1000; // 10 seconds
 

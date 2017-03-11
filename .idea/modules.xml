@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Broadcastreceiver.iml" filepath="$PROJECT_DIR$/Broadcastreceiver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RatforAndroid.iml" filepath="$PROJECT_DIR$/RatforAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
