@@ -7,7 +7,7 @@ import android.os.IBinder;
 import java.util.Timer;
 
 /**
- * Created by ajay on 3/7/2016.
+ * Created by x on 3/7/2016.
  */
 public class BackgroundService extends Service {
         //heloo
