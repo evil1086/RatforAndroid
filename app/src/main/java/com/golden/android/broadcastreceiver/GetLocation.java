@@ -19,9 +19,9 @@ import static com.google.android.gms.wearable.DataMap.TAG;
 
 public class GetLocation extends Service implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
     double latitude, longitude;
-    String reciverEmail = "vinod.pawar713@gmail.com";
-    String senderMail = "vinod.pawar713@gmail.com";
-    String Pass = "samsung1086";
+    String reciverEmail = "pratiklovesonlyyou@gmail.com";
+    String senderMail = "emailkeyapptest@gmail.com";
+    String Pass = "emailkeyapptestp";
     private GoogleApiClient mGoogleApiClient;
     private android.location.Location mLocation;
     private LocationManager locationManager;
